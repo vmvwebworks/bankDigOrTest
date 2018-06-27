@@ -1,0 +1,22 @@
+.siimple-content.siimple-content--small
+  .siimple-form
+    | Log in
+    = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+      .siimple-form-field
+        = f.label :email, class: "siimple-label"
+        br
+        = f.email_field :email, autofocus: true, autocomplete: "email", class: "siimple-input siimple-input--fluid siimple--height-50"
+      .siimple-form-field
+        = f.label :password, class: "siimple-label"
+        br
+        = f.password_field :password, autocomplete: "off", class: "siimple-input siimple-input--fluid"
+      - if devise_mapping.rememberable?
+        .siimple-form-field
+          = f.label :remember_me, class: "siimple-label"
+          .siimple-checkbox
+            = f.check_box :remember_me, id: "check"
+            label[for="check"]
+      .siimple-form-field
+        .actions
+          = f.submit "Log in", class: "siimple-btn siimple-btn--grey"
+    = render "devise/shared/links"
