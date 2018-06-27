@@ -8,6 +8,21 @@
         br
         = f.email_field :email, autofocus: true, autocomplete: "email", class: "siimple-input siimple-input--fluid siimple--height-50"
       .siimple-form-field
+        = f.label :name, class: "siimple-label"
+        br
+        = f.email_field :name, autofocus: true, autocomplete: "email", class: "siimple-input siimple-input--fluid siimple--height-50"
+      .siimple-form-field      
+        label.siimple-label
+          | Select an option:
+        br
+        select.siimple-select.siimple-select--fluid
+          option[selected]
+            | Option 1
+          option
+            | Option 2
+          option
+            | Option 3
+      .siimple-form-field
         = f.label :password, class: "siimple-label"
         - if @minimum_password_length
           em
