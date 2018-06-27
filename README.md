@@ -1,3 +1,15 @@
+## **Instructions for  run the test**
+
+> **First them all**
+>  I suggest to use rvm or something like avoiding of install anything "globally" and keeping your system clean.
+*This test used ruby 2.4.2, Rails 5.2.0 and MySQL as DB.*
+
+
+ 1. Unzip the project / download from Github / create a pull / fork from the project in Github.
+ 2. Install **Bundler** gem `gem install bundler`.
+ 3. Run `bundle`command.
+ 4. Once bundled all, run `rails db:setup`, this will create development and test dbs, tables and seed with bank names, otherwise, simply create dbs yourself, run `rails db:migrate` and `rails db:seed`
+
 **About​ ​This​ ​Test**
 
 The purpose of this code test is to show us your skills in:
@@ -20,7 +32,7 @@ The purpose of this code test is to show us your skills in:
 • Create a .zip with your code​ and git​ directory.
 • Answer our email with the zip​ of the project.
 
-## **Background**
+**Background**
 *The software you write in this test will be used for banks.*
 
 **Banks have accounts. Accounts hold money. Transfers can be made between accounts. Banks store the history of transfers.**
