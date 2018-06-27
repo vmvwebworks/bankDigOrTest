@@ -9,7 +9,7 @@
       .siimple-form-field
         = f.label :password, class: "siimple-label"
         br
-        = f.password_field :password, autocomplete: "off", class: "siimple-input siimple-input--fluid"
+        = f.password_field :password, autocomplete: "off", class: "siimple-input siimple-input--fluid siimple--height-50"
       - if devise_mapping.rememberable?
         .siimple-form-field
           = f.label :remember_me, class: "siimple-label"
