@@ -11,6 +11,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   def create
+    params[:user][:bank] = Bank.find(params[:user][:bank_id])
     super
   end
 
@@ -42,7 +43,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_sign_up_params
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :bank])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :bank_id, :bank])
   end
 
   # If you have extra params to permit, append them to the sanitizer.
