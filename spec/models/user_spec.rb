@@ -6,11 +6,12 @@ RSpec.describe User, type: :model do
   DatabaseCleaner.clean
   puts "seed db with banks..."
   Rails.application.load_seed
-
-
+  puts "testing user model"
   it "is valid with valid attributes" do
-    user = User.create(name: "valid user", email: "validemail@specmarcos.co", password: "123456", bank_id: 1)
-    expect(user.name).to eq("valid user")
-    expect(user.bank.name).to eq("Bankinter")
+    User.create(name: "valid user", email: "validemail@specmarcos.co", password: "123456", password_confirmation: '123456', bank_id: 1)
+    resUser = User.find_by(name: "valid user")
+    expect(resUser.name).to eq("valid user")
+    expect(resUser.bank.name).to eq("Bankinter")
+    expect(resUser.email).to eq("validemail@specmarcos.co")
   end
 end
