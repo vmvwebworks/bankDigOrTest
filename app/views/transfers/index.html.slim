@@ -1,0 +1,30 @@
+.siimple-table.siimple-table--striped.siimple-table--hover
+  .siimple-table-header
+    .siimple-table-row
+      .siimple-table-cell
+        | Sender
+      .siimple-table-cell
+        | Receiver
+      .siimple-table-cell
+        | Transaction type
+      .siimple-table-cell
+        | Ammount
+      .siimple-table-cell
+        | Currency
+      .siimple-table-cell
+        | Manage transfer
+  .siimple-table-body
+    - current_user.transfers.each do |transfer|
+      .siimple-table-row
+        .siimple-table-cell
+          = transfer.sender_user.name
+        .siimple-table-cell
+          = transfer.receiver_user.name
+        .siimple-table-cell
+          = transfer.trans_type
+        .siimple-table-cell
+          = transfer.money
+        .siimple-table-cell
+          = transfer.currency
+        .siimple-table-cell
+          = link_to "Manage transfer", transfer_path(transfer.id), class: "siimple-btn siimple-btn--primary siimple-btn--fluid"
