@@ -2,6 +2,10 @@
   = link_to "Toy Bank", root_path, class: "siimple-navbar-title"
   .siimple--float-right
     - if current_user
-      = link_to "Logout", destroy_user_session_path(@user), :method => :delete, class: "siimple-navbar-item"
+      .siimple-navbar-item
+        = link_to "Create Transaction", new_transfer_path, class: "siimple-btn siimple-btn--grey"        
+      .siimple-navbar-item
+        = link_to "Logout", destroy_user_session_path(@user), :method => :delete, class: "siimple-navbar-item"
+
     - else
       = link_to "Login", new_user_session_path, class: "siimple-navbar-item"

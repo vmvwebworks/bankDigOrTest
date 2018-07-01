@@ -1,0 +1,14 @@
+.siimple-content.siimple-content--small
+  .siimple-form
+    | Sign up
+    = form_for(current_user.transfers.new) do |f|
+      .siimple-form-field
+        = f.label :send_money_to, class: "siimple-label"
+        = f.hidden_field :sender, value: current_user.id
+        = f.select :receiver, User.all.collect{|p| [p.email, p.id]}, {}, class: "siimple-select siimple-select--fluid"
+      .siimple-form-field
+        = f.hidden_field :sender, value: "EUR"
+        = f.label :how_much?, class: "siimple-label"
+        = f.number_field :money, autofocus: true, class: "siimple-input siimple-input--fluid siimple--height-50"
+      .siimple-form-field
+        = f.submit "Create transfer", class: "siimple-btn siimple-btn--grey"
