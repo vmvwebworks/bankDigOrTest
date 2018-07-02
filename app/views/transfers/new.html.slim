@@ -11,4 +11,5 @@
         = f.label :how_much?, class: "siimple-label"
         = f.number_field :money, autofocus: true, class: "siimple-input siimple-input--fluid siimple--height-50"
       .siimple-form-field
+        = f.hidden_field :user_ids, value: [current_user.id, params[:receiver]] 
         = f.submit "Create transfer", class: "siimple-btn siimple-btn--grey"

@@ -5,6 +5,8 @@ class TransfersController < ApplicationController
   def new
   end
   def create
+    current_user.transfers.send_money(params[:sender], params[:receiver], params[:money], params[:currency])
+    redirect_to root_path
   end
   def show
   end
