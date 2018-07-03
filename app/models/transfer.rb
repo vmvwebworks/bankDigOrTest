@@ -5,7 +5,6 @@ class Transfer < ApplicationRecord
   scope :inter_banks, -> { where(trans_type: "Inter-bank")}
   scope :as_sender, -> {where(sender: current_user.id)}
   scope :as_receiver, -> {where(receiver: current_user.id)}
-
   def is_intra_bank?
     trans_type == "Intra-bank"
   end
@@ -18,38 +17,31 @@ class Transfer < ApplicationRecord
   def receiver_user
     User.find(receiver)
   end
-  def sndr_user(user_id)
-    User.find(user_id)
-  end
-  def rcvr_user(user_id)
-    User.find(user_id)
-  end
-  def send_money(sndr_id, rcvr_id, transfer_ammount, currency)
-    if sndr_user(sndr_id).bank.name == rcvr_user(rcvr_id).bank.name
-      inter_bank_op(sndr_id, rcvr_id, transfer_ammount, currency)
-    else
-      intra_bank_op(sndr_id, rcvr_id, transfer_ammount, currency)
+  def send_money
+    if is_intra_bank?
+      intra_bank_op(money)
     end
-    # The transfer it will created once the filter becomes defined
+    if is_inter_bank?
+      # TODO Random here for % of fail
+      inter_bank_op(money)
+    end
   end
 
-  def intra_bank_op(sndr_id, rcvr_id, transfer_ammount, currency)
-    unless sndr_user(sndr_id).money < transfer_ammount
-      decrease = sndr_user(sndr_id).money - transfer_ammount
-      sndr_user(sndr_id).transfers.create(sender: sndr_id, receiver: rcvr_id, money: transfer_ammount, currency: currency, trans_type: "Intra-bank", user_ids: [rcvr_id])
+  def intra_bank_op(money)
+    unless sender_user.money < money
+      decrease = sender_user.money - money
       sender_user.update(money: decrease)
-      receiver_user.update(money: transfer_ammount)
+      receiver_user.update(money: receiver_user.money + money)
     end
   end
 
-  def inter_bank_op(sndr_id, rcvr_id, transfer_ammount, currency)
-    unless sndr_user(sndr_id).money < transfer_ammount + 5 and transfer_ammount > 1000
-      decrease = sndr_user(sndr_id).money - transfer_ammount
+  def inter_bank_op(money)
+    unless sender_user.money < money + 5 and money > 1000
+      decrease = sender_user.money - money
       decrease = decrease - 5
-      sndr_user(sndr_id).transfers.create(sender: sndr_id, receiver: rcvr_id, money: transfer_ammount, currency: currency, trans_type: "Inter-bank", user_ids: [rcvr_id])
-      sndr_user(sndr_id).update(money: decrease)
-      rcvr_user(rcvr_id).update(money: transfer_ammount)
-      # TODO create methods for change values fwhen they are other user currencies
+      sender_user.update(money: decrease)
+      receiver_user.update(money: receiver_user.money + money)
     end
   end
+  # TODO create methods for change values fwhen they are other user currencies
 end
