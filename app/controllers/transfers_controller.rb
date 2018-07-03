@@ -5,7 +5,7 @@ class TransfersController < ApplicationController
   def new
   end
   def create
-    transfer = current_user.transfers.new(sender: params[:sender], receiver: params[:receiver], params[:money], currency: params[:currency], user_ids: [params[:sender], params[:receiver]])
+    transfer = current_user.transfers.new(transfer_params)
     if transfer.sender_user.bank.name == transfer.receiver_user.bank.name
       transfer.trans_type = "Intra-bank"
     else
@@ -18,4 +18,8 @@ class TransfersController < ApplicationController
   end
   def show
   end
+  private
+    def transfer_params
+      params.require(:transfer).permit(:sender, :receiver, :money, :currency, :user_ids)
+    end
 end
