@@ -9,8 +9,36 @@
  2. Install **Bundler** gem `gem install bundler`.
  3. Run `bundle`command.
  4. Once bundled all, run `rails db:setup`, this will create development and test dbs, tables and seed with bank names, otherwise, simply create dbs yourself, run `rails db:migrate` and `rails db:seed`
+**
 
-**About​ ​This​ ​Test**
+## Jim and Emma
+*Eassely done with rails tasks*
+
+ 1. `rails show_me_the_money:create_jim_and_emma`
+ 2. `rails show_me_the_money:transfer_agent`
+
+
+**Notes:**
+
+*On the last point, just one of the banks have an history (sender), it's missing the last step.*
+This tests includes good practices as:
+
+ - OOP
+ - TDD (some, and most on Behaviour)
+ - Git (it's my fu****g bread)
+ - Clean code & Problem solving (It's ok for me, so also, and of course, it's opinionable).
+
+**About doing this test:**
+
+***I spent a lot of time just on doing this test for yours**, about a week, fulltime and for yours. Time that can be spent on my own projects, for example. As candidate, i expect that yours, understand that this tests show that i have the related skills, if other, can be simply eassely faced and improved if it's needed.*
+
+*At least, please, if finally i'm not "the chosen one" give me good and reasonable reasons for that choice. This will give me the chance for improve my skills and myself.*
+
+*Best regards,
+**Marcos***
+
+
+## **About​ ​This​ ​Test**
 
 The purpose of this code test is to show us your skills in:
 • Object Oriented Programming
