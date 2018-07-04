@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe Transfer, type: :model do
   puts "Testing intra-bank transfers..."
   it "create an Intra-bank transfer" do
+
     user1 = User.create(name: "valid user1", email: "validemail1@specmarcos.co", password: "123456", password_confirmation: '123456', bank_id: 1, money: 1000)
     user2 = User.create(name: "valid user2", email: "validemail2@specmarcos.co", password: "123456", password_confirmation: '123456', bank_id: 1, money: 150)
     transfer = Transfer.new(sender: user1.id, receiver: user2.id, money:450, currency:"EUR", user_ids: [ user1.id, user2.id])

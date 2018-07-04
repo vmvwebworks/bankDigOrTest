@@ -10,6 +10,8 @@ html
   body
     = render :file =>"layouts/header"
     main
+      - flash.each do |key, value|
+        = content_tag :div, value, class: "flash #{key}"
       / = render "shared/sidenav"
       = yield
 = render :file =>"layouts/footer"

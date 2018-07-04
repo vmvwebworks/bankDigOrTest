@@ -10,11 +10,16 @@ class TransfersController < ApplicationController
       transfer.trans_type = "Intra-bank"
     else
       transfer.trans_type = "Inter-bank"
+      if transfer.it_fails?
+        flash[:error] = "the inter-bank transfer failed and nothing was done, try it again"
+        redirect_to transfers_path and return
+      end
+      flash[:success] = "Transaction succefully done"
     end
     transfer.send_money
-    transfer.create_history(bank_id: bank.id)
     transfer.save
-    redirect_to root_path
+    transfer.create_history(bank_id: current_user.bank.id)
+    redirect_to transfers_path
   end
   def show
   end

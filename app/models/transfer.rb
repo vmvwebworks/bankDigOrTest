@@ -22,7 +22,6 @@ class Transfer < ApplicationRecord
       intra_bank_op(money)
     end
     if is_inter_bank?
-      # TODO Random here for % of fail
       inter_bank_op(money)
     end
   end
@@ -42,6 +41,9 @@ class Transfer < ApplicationRecord
       sender_user.update(money: decrease)
       receiver_user.update(money: receiver_user.money + money)
     end
+  end
+  def it_fails?
+    chance = rand(100) > 30
   end
   # TODO create methods for change values fwhen they are other user currencies
 end

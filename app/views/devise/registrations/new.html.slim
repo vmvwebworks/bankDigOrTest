@@ -16,6 +16,10 @@
           | Select an option:
 
         = f.select :bank_id, Bank.all.collect{|p| [p.name, p.id]}, {}, class: "siimple-select siimple-select--fluid"
+      .siimple-form-field
+        = f.label :money, class: "siimple-label"
+        br
+        = f.number_field :money, autofocus: true, class: "siimple-input siimple-input--fluid siimple--height-50"
 
       .siimple-form-field
         = f.label :password, class: "siimple-label"
