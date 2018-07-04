@@ -1,9 +1,9 @@
 .siimple-navbar.siimple-navbar--extra-large.siimple-navbar--dark
-  = link_to "Toy Bank", root_path, class: "siimple-navbar-title"
+  = link_to "Transfer Agent", root_path, class: "siimple-navbar-title"
   .siimple--float-right
     - if current_user
       .siimple-navbar-item
-        = link_to "Create Transaction", new_transfer_path, class: "siimple-btn siimple-btn--grey"        
+        = link_to "Create Transaction", new_transfer_path, class: "siimple-btn siimple-btn--grey"
       .siimple-navbar-item
         = link_to "Logout", destroy_user_session_path(@user), :method => :delete, class: "siimple-navbar-item"
 
